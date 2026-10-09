@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Стерильный свет — первый экран</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1F8A80}a:hover{color:#0E3B44}
+@keyframes e2In{0%{opacity:0;transform:scale(.9);filter:blur(16px)}100%{opacity:1;transform:none;filter:blur(0)}}
+@keyframes e2Drift{0%,100%{transform:translate(0,0) rotate(-4deg)}50%{transform:translate(-14px,-18px) rotate(3deg)}}
+@keyframes e2Scan{0%{transform:translateY(0);opacity:0}8%{opacity:1}82%{opacity:1}100%{transform:translateY(560px);opacity:0}}
+@keyframes e2Pulse{0%,100%{box-shadow:0 0 0 0 rgba(31,138,128,.45)}60%{box-shadow:0 0 0 10px rgba(31,138,128,0)}}
+@keyframes e2Up{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:none}}
+@keyframes e2Tick{0%,100%{opacity:.35}50%{opacity:1}}
+.e2-anim .e2-mk-in{animation:e2In 2s cubic-bezier(.16,.84,.44,1) both}
+.e2-anim .e2-mk-drift{animation:e2Drift 18s ease-in-out 2s infinite}
+.e2-anim .e2-scan{animation:e2Scan 6.5s cubic-bezier(.45,0,.55,1) 1.4s infinite}
+.e2-anim .e2-dot{animation:e2Pulse 2.4s ease-out infinite}
+.e2-anim .e2-up{animation:e2Up .8s cubic-bezier(.16,.84,.44,1) both}
+.e2-anim .e2-tick{animation:e2Tick 3s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.e2-anim *{animation:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="position: relative; width: 1440px; height: 900px; overflow: hidden; box-sizing: border-box; background: linear-gradient(160deg, #FBFDFE 0%, #F1F7F9 45%, #E3EFF3 100%); font-family: 'Geologica', system-ui, sans-serif; color: #0E2A33;">
+
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(rgba(14,59,68,0.10) 1px, transparent 1.2px); background-size: 16px 16px; -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 30%, #000 70%); mask-image: linear-gradient(90deg, rgba(0,0,0,0) 30%, #000 70%);"></div>
+<div aria-hidden="true" style="position: absolute; left: 760px; top: 0; bottom: 0; width: 1px; background: rgba(14,59,68,0.08);"></div>
+
+<svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="e2-rs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a68"></stop><stop offset=".45" stop-color="#e8423a"></stop><stop offset="1" stop-color="#b3201f"></stop></linearGradient>
+<linearGradient id="e2-bs" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#5cc0f7"></stop><stop offset=".5" stop-color="#1c8fd6"></stop><stop offset="1" stop-color="#0d5f9f"></stop></linearGradient>
+<linearGradient id="e2-gs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fe08a"></stop><stop offset=".6" stop-color="#3fa84a"></stop><stop offset="1" stop-color="#23782f"></stop></linearGradient>
+<linearGradient id="e2-ws" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"></stop><stop offset=".6" stop-color="#eef6fc"></stop><stop offset="1" stop-color="#d5e7f5"></stop></linearGradient>
+</defs>
+<symbol id="e2-e" viewBox="0 -2 100 96">
+<path d="M15 84 C 6 76, 2 62, 4 52 C 6 36, 14 24, 26 20 C 36 17, 48 18, 58 24 C 61 25.5, 63 26, 64 26 C 70 24.5, 77 23.5, 83 22 C 86 19, 87.5 16, 87.5 14 C 88.5 22, 88 34, 83 42 C 77 48, 68 50, 58 49.5 C 54 49, 51 48.5, 47.5 47.5 C 40 44, 30 43, 22 46 C 14 50, 9 58, 9 67 C 9 74, 11 80, 15 84 Z" fill="url(#e2-ws)" stroke="#b9d3e8" stroke-width=".7"></path>
+<path d="M47.5 47.5 C 40 44, 30 43, 22 46 C 14 50, 9 58, 9 67 C 9 75, 13 82, 20 87.5 C 26 74, 35 58, 47.5 47.5 Z" fill="url(#e2-bs)"></path>
+<path d="M79 3 C 90 8, 97 20, 96 32 C 95 46, 90 60, 80 68 C 70 75, 55 76, 43 72.5 C 34 77, 26 82, 20 87.5 C 26 76, 34 62, 47.5 47.5 C 51 48.5, 54 49, 58 49.5 C 68 50, 77 48, 83 42 C 88 34, 88.5 22, 87.5 14 C 86 9, 83 5.5, 79 3 Z" fill="url(#e2-rs)"></path>
+<path d="M64 26 C 69 17, 74 9, 79 3 C 83 5.5, 86 9, 87.5 14 C 87.5 16, 86 19, 83 22 C 77 23.5, 70 24.5, 64 26 Z" fill="url(#e2-gs)"></path>
+<g fill="none" stroke="#fff" stroke-linecap="round"><path d="M8 58 C 9 42, 18 28, 34 23" stroke-width="1.6" opacity=".9"></path><path d="M91 20 C 94 30, 93 44, 87 56" stroke-width="1.4" opacity=".55"></path><path d="M13 58 C 16 52, 21 49, 28 47.5" stroke-width="1.3" opacity=".6"></path></g>
+</symbol>
+<symbol id="e2-w" viewBox="0 0 828 122">
+<path fill-rule="evenodd" fill="currentColor" d="M0 100 L33 0 L63 0 L96 100 L71 100 L65.5 81 L30.5 81 L25 100 Z M37 60 L59 60 L48 26 Z"></path>
+<g transform="translate(104,0)"><path fill="currentColor" d="M0 100 V0 H27 L47 50 L67 0 H94 V100 H71 V42 L54 84 H40 L23 42 V100 Z"></path></g>
+<g transform="translate(206,0)"><ellipse cx="56" cy="50" rx="44" ry="29" fill="none" stroke="currentColor" stroke-width="23"></ellipse><rect x="44.5" y="-6" width="23" height="112" fill="currentColor"></rect></g>
+<g transform="translate(326,0)"><ellipse cx="50" cy="50" rx="38.5" ry="39" fill="none" stroke="currentColor" stroke-width="23"></ellipse></g>
+<g transform="translate(434,0)"><path fill="currentColor" fill-rule="evenodd" d="M20 0 L94 0 L94 78 L106 78 L106 122 L84 122 L84 100 L22 100 L22 122 L0 122 L0 78 L8 78 C 14 56, 20 28, 20 0 Z M43 23 C 43 47, 38 64, 32 78 L71 78 L71 23 Z"></path></g>
+<g transform="translate(548,0)"><path fill="currentColor" d="M0 0 H80 V22 H24 V39 H74 V61 H24 V78 H80 V100 H0 Z"></path></g>
+<g transform="translate(636,0)"><path fill="currentColor" d="M0 0 H24 V39 H70 V0 H94 V100 H70 V61 H24 V100 H0 Z"></path></g>
+<g transform="translate(738,0)"><path fill="currentColor" d="M0 0 H90 V22 H57 V100 H33 V22 H0 Z"></path></g>
+</symbol>
+</svg>
+
+<header style="position: relative; z-index: 4; height: 84px; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; gap: 40px;">
+  <a href="#" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0E3B44;">
+    <svg width="42" height="40" viewBox="0 -2 100 96" aria-hidden="true"><use href="#e2-e"></use></svg>
+    <svg width="140" height="21" viewBox="0 0 828 122" role="img" aria-label="Амфодент"><use href="#e2-w"></use></svg>
+  </a>
+  <nav style="display: flex; gap: 6px; margin-left: auto; padding: 5px; border-radius: 999px; background: rgba(255,255,255,0.7); border: 1px solid rgba(14,59,68,0.08); font-size: 14px; font-weight: 500;">
+    <a href="#" style="padding: 9px 16px; border-radius: 999px; color: #0E3B44; text-decoration: none; background: #E4F2F0;">Комплекты</a>
+    <a href="#" style="padding: 9px 16px; color: #4B6770; text-decoration: none;">Калькулятор</a>
+    <a href="#" style="padding: 9px 16px; color: #4B6770; text-decoration: none;">Кабинеты</a>
+    <a href="#" style="padding: 9px 16px; color: #4B6770; text-decoration: none;">Как работаем</a>
+    <a href="#" style="padding: 9px 16px; color: #4B6770; text-decoration: none;">Вопросы</a>
+  </nav>
+  <a href="tel:+78120000000" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; font-weight: 500; color: #0E2A33; text-decoration: none;">+7 812 000-00-00</a>
+</header>
+
+<div style="position: absolute; left: 80px; top: 168px; width: 620px; z-index: 3; display: flex; flex-direction: column;">
+  <span class="e2-up" style="display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 7px 14px 7px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid rgba(31,138,128,0.25); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #1F8A80;">
+    <span class="e2-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #1F8A80;"></span>оснащаем стоматологии с 1993
+  </span>
+  <h1 class="e2-up" style="margin: 28px 0 0; font-weight: 600; font-size: 72px; line-height: 0.98; letter-spacing: -0.035em; color: #0E2A33; animation-delay: .15s;">Стоматологический кабинет <span style="font-weight: 300; color: #1F8A80;">под&nbsp;ключ</span></h1>
+  <p class="e2-up" style="margin: 28px 0 0; font-size: 18px; font-weight: 400; line-height: 1.6; color: #4B6770; max-width: 32em; animation-delay: .3s;">Подберём, поставим и&nbsp;смонтируем оборудование от&nbsp;официальных производителей. Цену комплекта видно сразу — без звонка менеджеру.</p>
+  <div class="e2-up" style="display: flex; gap: 14px; margin-top: 40px; animation-delay: .45s;">
+    <button type="button" style="height: 56px; padding: 0 28px; border-radius: 14px; border: none; background: #0E5A55; color: #FFFFFF; font-family: inherit; font-size: 15.5px; font-weight: 500; box-shadow: 0 14px 28px -14px rgba(14,90,85,0.7);">Рассчитать кабинет</button>
+    <button type="button" style="height: 56px; padding: 0 24px; border-radius: 14px; border: 1px solid rgba(14,59,68,0.16); background: rgba(255,255,255,0.7); color: #0E2A33; font-family: inherit; font-size: 15.5px; font-weight: 500;">Почему Амфодент</button>
+  </div>
+  <dl class="e2-up" style="margin: 56px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; animation-delay: .6s;">
+    <div style="display: flex; flex-direction: column; gap: 6px; padding-right: 14px;"><dt style="font-size: 11px; color: #7C939A; text-transform: uppercase; letter-spacing: .08em;">на рынке</dt><dd style="margin: 0; font-size: 17px; color: #0E2A33;">33 года</dd></div>
+    <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 14px; border-left: 1px solid rgba(14,59,68,0.12);"><dt style="font-size: 11px; color: #7C939A; text-transform: uppercase; letter-spacing: .08em;">статус</dt><dd style="margin: 0; font-size: 17px; color: #0E2A33;">дилер</dd></div>
+    <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 14px; border-left: 1px solid rgba(14,59,68,0.12);"><dt style="font-size: 11px; color: #7C939A; text-transform: uppercase; letter-spacing: .08em;">сервис</dt><dd style="margin: 0; font-size: 17px; color: #0E2A33;">свой</dd></div>
+    <div style="display: flex; flex-direction: column; gap: 6px; padding-left: 14px; border-left: 1px solid rgba(14,59,68,0.12);"><dt style="font-size: 11px; color: #7C939A; text-transform: uppercase; letter-spacing: .08em;">поставка</dt><dd style="margin: 0; font-size: 17px; color: #0E2A33;">вся РФ</dd></div>
+  </dl>
+</div>
+
+<div style="position: absolute; left: 820px; top: 110px; width: 560px; height: 560px; z-index: 1;">
+  <div aria-hidden="true" style="position: absolute; inset: 40px; border-radius: 50%; border: 1px dashed rgba(14,59,68,0.16);"></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(14,59,68,0.07);"></div>
+  <div class="e2-mk-in" style="position: absolute; left: 70px; top: 50px; width: 420px; height: 404px;">
+    <div class="e2-mk-drift" style="width: 100%; height: 100%;">
+      <svg width="420" height="404" viewBox="0 -2 100 96" aria-hidden="true" style="overflow: visible; filter: drop-shadow(0 30px 40px rgba(14,59,68,0.18));"><use href="#e2-e"></use></svg>
+    </div>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 560px; overflow: hidden; border-radius: 50%; pointer-events: none;">
+    <div class="e2-scan" style="position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, rgba(31,138,128,0) 0%, #2FB3A6 50%, rgba(31,138,128,0) 100%); box-shadow: 0 0 18px 4px rgba(47,179,166,0.35);"></div>
+  </div>
+  <span class="e2-tick" style="position: absolute; left: 0; top: 96px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #4B6770; display: flex; align-items: center; gap: 8px;">установка<span style="width: 46px; height: 1px; background: rgba(14,59,68,0.35);"></span></span>
+  <span class="e2-tick" style="position: absolute; right: -10px; top: 70px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #4B6770; display: flex; align-items: center; gap: 8px; animation-delay: 1s;"><span style="width: 46px; height: 1px; background: rgba(14,59,68,0.35);"></span>стерилизация</span>
+  <span class="e2-tick" style="position: absolute; right: -24px; top: 250px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #4B6770; display: flex; align-items: center; gap: 8px; animation-delay: 2s;"><span style="width: 46px; height: 1px; background: rgba(14,59,68,0.35);"></span>рентген · 3D</span>
+</div>
+
+<div class="e2-up" style="position: absolute; left: 800px; top: 486px; width: 560px; z-index: 3; box-sizing: border-box; padding: 22px; border-radius: 26px; background: rgba(255,255,255,0.55); -webkit-backdrop-filter: blur(22px) saturate(1.3); backdrop-filter: blur(22px) saturate(1.3); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 40px 80px -40px rgba(14,59,68,0.45), inset 0 1px 0 #FFFFFF; animation-delay: .9s;">
+  <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 6px 14px;">
+    <span style="font-size: 15px; font-weight: 600;">Выберите комплект</span>
+    <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; color: #7C939A;">установка + компрессор, ₽</span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 6px;">
+    <div style="display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 14px;">
+      <span style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(14,59,68,0.3);"></span>
+      <span style="font-size: 15px;">Стартовый <span style="color: #7C939A; font-size: 13px;">· Premier 05</span></span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px;">от 300 000</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 14px;">
+      <span style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(14,59,68,0.3);"></span>
+      <span style="font-size: 15px;">Базовый <span style="color: #7C939A; font-size: 13px;">· Kaiser</span></span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px;">от 520 000</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #1F8A80, 0 10px 24px -14px rgba(14,90,85,0.5);">
+      <span style="width: 16px; height: 16px; border-radius: 50%; border: 5px solid #1F8A80; box-sizing: border-box;"></span>
+      <span style="font-size: 15px; font-weight: 600;">Надёжный оптимум <span style="color: #1F8A80; font-size: 12px; font-weight: 500; font-family: 'JetBrains Mono', ui-monospace, monospace; margin-left: 6px;">чаще выбирают</span></span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; font-weight: 500;">от 1 010 000</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 14px;">
+      <span style="width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(14,59,68,0.3);"></span>
+      <span style="font-size: 15px;">Премиум <span style="color: #7C939A; font-size: 13px;">· S380 TRC</span></span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px;">от 1 510 000</span>
+    </div>
+  </div>
+  <button type="button" style="margin-top: 14px; width: 100%; height: 54px; border-radius: 14px; border: none; background: #E2493B; color: #FFFFFF; font-family: inherit; font-size: 15.5px; font-weight: 500; box-shadow: 0 14px 26px -14px rgba(226,73,59,0.8);">Собрать «Надёжный оптимум» →</button>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"animate":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const on = this.props.animate ?? true;
+    return { rootClass: on ? 'e2-anim' : '' };
+  }
+}
+</script>
+</body>
+</html>
